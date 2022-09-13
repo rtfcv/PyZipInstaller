@@ -1,0 +1,10 @@
+{
+  "pkgs": {
+    "pympress": {
+      "repo": "Cimbali/pympress",
+      "type":"zip(typing is not implemented yet)",
+      "dl_regex": "pympress-(.*)-x86_64.zip",
+      "prev_url": ""
+    }
+  }
+}
