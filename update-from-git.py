@@ -6,7 +6,7 @@ import platform
 import io
 import json
 import pandas as pd
-# import subprocess
+import subprocess
 import pysimpleconfig as pyconf
 
 _pre = 'https://api.github.com/repos/'
@@ -87,11 +87,14 @@ for key in pkg_list:
 
         # if the url ended with deb
         _data = urllib.request.urlopen(_url)
-        with io.open(
-                os.path.join(config.config_dir, f'{key}.zip'),
-                "wb") as file:
+        filePath = os.path.join(config.config_dir, f'{key}.zip')
+        with io.open(filePath, "wb") as file:
             file.write(_data.read())
+
         # TODO: install zipfiles
+        subprocess.check_call(
+                ['7z', 'x', f'-o{os.path.join(config.config_dir,key)}', filePath]
+                )
         # subprocess.check_call(['sudo', 'apt', 'install', '/tmp/temp.deb'])
         # if the url ended with tar.gz
 
